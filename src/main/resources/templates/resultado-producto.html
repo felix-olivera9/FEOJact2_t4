@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Producto Registrado</title>
+</head>
+<body>
+    <h1>¡Producto registrado con éxito!</h1>
+    <p><strong>Nombre:</strong> <span th:text="${productoGuardado.nombre}"></span></p>
+    <p><strong>Precio:</strong> <span th:text="${productoGuardado.precio}"></span></p>
+    <p><strong>Categoría:</strong> <span th:text="${productoGuardado.categoria}"></span></p>
+    <br>
+    <a href="/productos">Ver listado completo</a>
+</body>
+</html>

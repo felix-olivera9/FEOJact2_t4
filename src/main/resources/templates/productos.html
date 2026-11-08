@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+</head>
+<body>
+    <h1 th:text="${proyecto}">Nombre del Proyecto</h1>
+    <p>Estudiante: <span th:text="${estudiante}">Nombre</span></p>
+    
+    <hr>
+    <h2>Catálogo de Productos</h2>
+    
+    <!-- Filtro por categoría (@RequestParam) -->
+    <form action="/productos" method="get">
+        <label>Filtrar por categoría:</label>
+        <input type="text" name="categoria" th:value="${categoriaSeleccionada}" placeholder="Ej. Computo"/>
+        <button type="submit">Filtrar</button>
+        <a href="/productos">Limpiar</a>
+    </form>
+    <br>
+
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Acción (@PathVariable)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Recorriendo la lista con la directiva th:each -->
+            <tr th:each="p : ${productos}">
+                <td th:text="${p.nombre}">Nombre</td>
+                <td th:text="${p.precio}">0.0</td>
+                <td th:text="${p.categoria}">Categoría</td>
+                <td>
+                    <a th:href="@{/productos/detalle/{nombre}(nombre=${p.nombre})}">Ver detalle</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="/productos/nuevo">Registrar nuevo producto (@ModelAttribute)</a>
+</body>
+</html>
